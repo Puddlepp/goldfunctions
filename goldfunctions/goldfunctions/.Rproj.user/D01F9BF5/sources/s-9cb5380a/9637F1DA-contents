@@ -1,0 +1,23 @@
+Package: goldfunctions
+Type: Package
+Title: Extracts Data From CPRD GOLD
+Version: 0.1.0
+Author: Aron Buxton
+Maintainer: aron.buxton@pharmatelligence.co.uk
+Description: Functions to extract data from CPRD GOLD
+Encoding: UTF-8
+LazyData: true
+Depends: 
+    DBI,
+    dbplyr,
+    dplyr,
+    forcats,
+    ggplot2,
+    odbc,
+    purrr,
+    readr,
+    stringr,
+    tibble,
+    tidyquant,
+    tidyr
+RoxygenNote: 7.1.2
