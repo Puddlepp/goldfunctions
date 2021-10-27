@@ -6,16 +6,16 @@
 #' Codes:
 #'
 #' Medcode  Readcode  Description
-#' 59       44E..00   Serum bilirubin level
-#' 66       44EC.00   Serum total bilirubin level
-#' 1183     44E2.00   Serum bilirubin raised
-#' 13724    44E3.00   Total bilirubin
-#' 13725    44E9.00   Plasma total bilirubin level
-#' 26898    44E1.00   Serum bilirubin normal
-#' 37205    44E6.00   Serum bilirubin borderline
-#' 44363    44EZ.00   Serum bilirubin NOS
-#' 101070   4QCE.00   Bilirubin level
-#' 101501   4QCE000   Bilirubin direct measurement
+#' 59 \tab  44E..00 \tab   Serum bilirubin level
+#' 66 \tab      44EC.00 \tab   Serum total bilirubin level
+#' 1183 \tab    44E2.00 \tab   Serum bilirubin raised
+#' 13724 \tab  44E3.00 \tab   Total bilirubin
+#' 13725 \tab  44E9.00 \tab   Plasma total bilirubin level
+#' 26898 \tab  44E1.00 \tab   Serum bilirubin normal
+#' 37205 \tab    44E6.00 \tab   Serum bilirubin borderline
+#' 44363 \tab    44EZ.00 \tab   Serum bilirubin NOS
+#' 101070 \tab   4QCE.00 \tab   Bilirubin level
+#' 101501 \tab   4QCE000 \tab   Bilirubin direct measurement
 #'
 #' @param cohort A dataframe containing at least one column called patid
 #' @return A dataframe containing all serum bilirubin records
