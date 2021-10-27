@@ -19,7 +19,7 @@ It assumes that your cohort contains a column named patid.
 \details{
 Codes:
 
-#' \tabular{lllll}{
+\tabular{lllll}{
 Medcode \tab  \tab Readcode \tab  \tab Description\cr
 1 \tab  \tab 	246..00 \tab  \tab 	O/E - blood pressure reading\cr
 57 \tab  \tab 	246..11 \tab  \tab 	O/E - BP reading\cr
@@ -28,18 +28,18 @@ Medcode \tab  \tab Readcode \tab  \tab Description\cr
 102 \tab  \tab 	662L.00 \tab  \tab 	24 hr blood pressure monitoring\cr
 103 \tab  \tab 	246V.00 \tab  \tab 	Average 24 hour diastolic blood pressure\cr
 351 \tab  \tab 	G20..11 \tab  \tab 	High blood pressure\cr
-676 \tab  \tab 	R1y2.00 \tab  \tab 	\link{D}Raised blood pressure reading\cr
+676 \tab  \tab 	R1y2.00 \tab  \tab 	[D]Raised blood pressure reading\cr
 803 \tab  \tab 	68B1.00 \tab  \tab 	Hypertension screen\cr
 859 \tab  \tab 	2464 \tab  \tab 	O/E - BP reading normal\cr
 1956 \tab  \tab 	9OD..11 \tab  \tab 	BP screen administration\cr
 3481 \tab  \tab 	2465 \tab  \tab 	O/E - BP borderline raised\cr
 5020 \tab  \tab 	2466 \tab  \tab 	O/E - BP reading raised\cr
 5341 \tab  \tab 	2462 \tab  \tab 	O/E - BP reading low\cr
-5760 \tab  \tab 	ZV70B00 \tab  \tab 	\link{V}Examination of blood pressure\cr
-6598 \tab  \tab 	R1y3.00 \tab  \tab 	\link{D}Low blood pressure reading\cr
+5760 \tab  \tab 	ZV70B00 \tab  \tab 	[V]Examination of blood pressure\cr
+6598 \tab  \tab 	R1y3.00 \tab  \tab 	[D]Low blood pressure reading\cr
 8574 \tab  \tab 	662Q.00 \tab  \tab 	Borderline blood pressure\cr
 8732 \tab  \tab 	G2...11 \tab  \tab 	BP - hypertensive disease\cr
-10055 \tab  \tab 	R1y4.00 \tab  \tab 	\link{D}BP reading labile\cr
+10055 \tab  \tab 	R1y4.00 \tab  \tab 	[D]BP reading labile\cr
 14448 \tab  \tab 	315B.00 \tab  \tab 	Ambulatory blood pressure recording\cr
 14452 \tab  \tab 	2468 \tab  \tab 	O/E - BP reading:postural drop\cr
 14640 \tab  \tab 	246C.00 \tab  \tab 	Lying blood pressure reading\cr
