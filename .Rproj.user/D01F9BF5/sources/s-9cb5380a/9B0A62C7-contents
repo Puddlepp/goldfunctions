@@ -5,11 +5,13 @@
 #'
 #' Codes:
 #'
-#' Medcode  Readcode  Description
-#' 23       44M4.00   Serum albumin
-#' 13708    44MI.00   Plasma albumin level
-#' 26892    44M4000   Serum albumin normal
-#' 26893    44M4100   Serum albumin low
+#' \tabular{lllll}{
+#' Medcode \tab  \tab Readcode \tab  \tab Description\cr
+#' 23 \tab  \tab 44M4.00 \tab  \tab Serum albumin\cr
+#' 13708 \tab  \tab 44MI.00 \tab  \tab Plasma albumin level\cr
+#' 26892 \tab  \tab 44M4000 \tab  \tab Serum albumin normal\cr
+#' 26893 \tab  \tab 44M4100 \tab  \tab Serum albumin low\cr
+#' }
 #'
 #' @param cohort A dataframe containing at least one column called patid
 #' @return A dataframe containing all serum albumin records

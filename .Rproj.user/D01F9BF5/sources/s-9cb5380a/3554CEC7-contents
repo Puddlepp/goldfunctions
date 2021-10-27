@@ -3,6 +3,79 @@
 #' This function extracts systolic and diastolic test results from CPRD GOLD.
 #' It assumes that your cohort contains a column named patid.
 #'
+#' Codes:
+#'
+#' #' \tabular{lllll}{
+#' Medcode \tab  \tab Readcode \tab  \tab Description\cr
+#' 1 \tab  \tab 	246..00 \tab  \tab 	O/E - blood pressure reading\cr
+#' 57 \tab  \tab 	246..11 \tab  \tab 	O/E - BP reading\cr
+#' 100 \tab  \tab 	246..12 \tab  \tab 	O/E - blood pressure\cr
+#' 101 \tab  \tab 	2461 \tab  \tab 	O/E - BP reading very low\cr
+#' 102 \tab  \tab 	662L.00 \tab  \tab 	24 hr blood pressure monitoring\cr
+#' 103 \tab  \tab 	246V.00 \tab  \tab 	Average 24 hour diastolic blood pressure\cr
+#' 351 \tab  \tab 	G20..11 \tab  \tab 	High blood pressure\cr
+#' 676 \tab  \tab 	R1y2.00 \tab  \tab 	[D]Raised blood pressure reading\cr
+#' 803 \tab  \tab 	68B1.00 \tab  \tab 	Hypertension screen\cr
+#' 859 \tab  \tab 	2464 \tab  \tab 	O/E - BP reading normal\cr
+#' 1956 \tab  \tab 	9OD..11 \tab  \tab 	BP screen administration\cr
+#' 3481 \tab  \tab 	2465 \tab  \tab 	O/E - BP borderline raised\cr
+#' 5020 \tab  \tab 	2466 \tab  \tab 	O/E - BP reading raised\cr
+#' 5341 \tab  \tab 	2462 \tab  \tab 	O/E - BP reading low\cr
+#' 5760 \tab  \tab 	ZV70B00 \tab  \tab 	[V]Examination of blood pressure\cr
+#' 6598 \tab  \tab 	R1y3.00 \tab  \tab 	[D]Low blood pressure reading\cr
+#' 8574 \tab  \tab 	662Q.00 \tab  \tab 	Borderline blood pressure\cr
+#' 8732 \tab  \tab 	G2...11 \tab  \tab 	BP - hypertensive disease\cr
+#' 10055 \tab  \tab 	R1y4.00 \tab  \tab 	[D]BP reading labile\cr
+#' 14448 \tab  \tab 	315B.00 \tab  \tab 	Ambulatory blood pressure recording\cr
+#' 14452 \tab  \tab 	2468 \tab  \tab 	O/E - BP reading:postural drop\cr
+#' 14640 \tab  \tab 	246C.00 \tab  \tab 	Lying blood pressure reading\cr
+#' 14641 \tab  \tab 	246D.00 \tab  \tab 	Standing blood pressure reading\cr
+#' 14642 \tab  \tab 	246E.00 \tab  \tab 	Sitting blood pressure reading\cr
+#' 14643 \tab  \tab 	2467 \tab  \tab 	O/E - BP reading very high\cr
+#' 15126 \tab  \tab 	6623 \tab  \tab 	Pre-treatment BP reading\cr
+#' 16288 \tab  \tab 	9OD7.00 \tab  \tab 	BP screen - 3rd recall\cr
+#' 16478 \tab  \tab 	9OD2.00 \tab  \tab 	BP screen - 2nd call\cr
+#' 16541 \tab  \tab 	9OD..12 \tab  \tab 	Blood pressure screen admin\cr
+#' 18418 \tab  \tab 	246Q.00 \tab  \tab 	Sitting systolic blood pressure\cr
+#' 19905 \tab  \tab 	246J.00 \tab  \tab 	O/E - BP reading: no postural drop\cr
+#' 20049 \tab  \tab 	662V.00 \tab  \tab 	Blood pressure monitoring\cr
+#' 22476 \tab  \tab 	662j.00 \tab  \tab 	Blood pressure recorded by patient at home\cr
+#' 22595 \tab  \tab 	246A.00 \tab  \tab 	O/E - Diastolic BP reading\cr
+#' 23312 \tab  \tab 	2469 \tab  \tab 	O/E - Systolic BP reading\cr
+#' 25553 \tab  \tab 	246G.00 \tab  \tab 	O/E - BP labile\cr
+#' 27271 \tab  \tab 	246B.00 \tab  \tab 	O/E - BP stable\cr
+#' 27272 \tab  \tab 	246Z.00 \tab  \tab 	O/E-blood pressure reading NOS\cr
+#' 27273 \tab  \tab 	246F.00 \tab  \tab 	O/E - blood pressure decreased\cr
+#' 27274 \tab  \tab 	2463 \tab  \tab 	O/E - BP borderline low\cr
+#' 27534 \tab  \tab 	662C.00 \tab  \tab 	O/E - check high BP\cr
+#' 29261 \tab  \tab 	246d.00 \tab  \tab 	Average home systolic blood pressure\cr
+#' 29390 \tab  \tab 	662B.00 \tab  \tab 	O/E - initial high BP\cr
+#' 31305 \tab  \tab 	246c.00 \tab  \tab 	Average home diastolic blood pressure\cr
+#' 33330 \tab  \tab 	246K.00 \tab  \tab 	Target systolic blood pressure\cr
+#' 34186 \tab  \tab 	9OD5.00 \tab  \tab 	BP screen - 1st recall\cr
+#' 34187 \tab  \tab 	9OD6.00 \tab  \tab 	BP screen - 2nd recall\cr
+#' 34231 \tab  \tab 	9OD1.00 \tab  \tab 	BP screen - 1st call\cr
+#' 34244 \tab  \tab 	9OD3.00 \tab  \tab 	BP screen - 3rd call\cr
+#' 34618 \tab  \tab 	246Y.00 \tab  \tab 	Average day interval systolic blood pressure\cr
+#' 37242 \tab  \tab 	246N.00 \tab  \tab 	Standing systolic blood pressure\cr
+#' 37243 \tab  \tab 	246P.00 \tab  \tab 	Standing diastolic blood pressure\cr
+#' 37312 \tab  \tab 	2460 \tab  \tab 	O/E - BP unrecordable\cr
+#' 38277 \tab  \tab 	246W.00 \tab  \tab 	Average 24 hour systolic blood pressure\cr
+#' 38278 \tab  \tab 	246b.00 \tab  \tab 	Average night interval systolic blood pressure\cr
+#' 41052 \tab  \tab 	246e.00 \tab  \tab 	Ambulatory systolic blood pressure\cr
+#' 41445 \tab  \tab 	246X.00 \tab  \tab 	Average day interval diastolic blood pressure\cr
+#' 42280 \tab  \tab 	246R.00 \tab  \tab 	Sitting diastolic blood pressure\cr
+#' 43282 \tab  \tab 	246S.00 \tab  \tab 	Lying systolic blood pressure\cr
+#' 43547 \tab  \tab 	246a.00 \tab  \tab 	Average night interval diastolic blood pressure\cr
+#' 43719 \tab  \tab 	9OD9.00 \tab  \tab 	BP ABNORMAL - 1st recall\cr
+#' 47932 \tab  \tab 	9ODA.00 \tab  \tab 	BP ABNORMAL - 2nd recall\cr
+#' 48008 \tab  \tab 	246f.00 \tab  \tab 	Ambulatory diastolic blood pressure\cr
+#' 51357 \tab  \tab 	246L.00 \tab  \tab 	Target diastolic blood pressure\cr
+#' 55411 \tab  \tab 	9ODB.00 \tab  \tab 	BP ABNORMAL - 3rd recall\cr
+#' 65990 \tab  \tab 	246T.00 \tab  \tab 	Lying diastolic blood pressure\cr
+#' 94807 \tab  \tab 	246g.00 \tab  \tab 	Self measured blood pressure reading\cr
+#' }
+#'
 #' @param cohort A dataframe containing at least one column called patid
 #' @return A dataframe containing all systolic and diastolic blood pressure records
 #' @export

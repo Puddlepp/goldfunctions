@@ -3,6 +3,13 @@
 #' This function extracts glomerular filtration rate test results from CPRD GOLD.
 #' It assumes that your cohort contains a column named patid.
 #'
+#' Codes:
+#'
+#' \tabular{lllll}{
+#' Medcode \tab  \tab Readcode \tab  \tab Description\cr
+#' 19747 \tab  \tab 451F.00 \tab  \tab Glomerular filtration rate\cr
+#' }
+#'
 #' @param cohort A dataframe containing at least one column called patid
 #' @return A dataframe containing all glomerular filtration rate records
 #' @export

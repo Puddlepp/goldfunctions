@@ -19,17 +19,17 @@ It assumes that your cohort contains a column named patid.
 \details{
 Codes:
 
-\tabular{lll}{
-Medcode \tab Readcode \tab Description\cr
-59 \tab 44E..00 \tab Serum bilirubin level\cr
-66 \tab 44EC.00 \tab Serum total bilirubin level\cr
-1183 \tab 44E2.00 \tab Serum bilirubin raised\cr
-13724 \tab 44E3.00 \tab Total bilirubin\cr
-13725 \tab 44E9.00 \tab Plasma total bilirubin level\cr
-26898 \tab 44E1.00 \tab Serum bilirubin normal\cr
-37205 \tab 44E6.00 \tab Serum bilirubin borderline\cr
-44363 \tab 44EZ.00 \tab Serum bilirubin NOS\cr
-101070 \tab 4QCE.00 \tab Bilirubin level\cr
-101501 \tab 4QCE000 \tab Bilirubin direct measurement\cr
+\tabular{lllll}{
+Medcode \tab  \tab Readcode \tab  \tab Description\cr
+59 \tab  \tab 44E..00 \tab  \tab Serum bilirubin level\cr
+66 \tab  \tab 44EC.00 \tab  \tab Serum total bilirubin level\cr
+1183 \tab  \tab 44E2.00 \tab  \tab Serum bilirubin raised\cr
+13724 \tab  \tab 44E3.00 \tab  \tab Total bilirubin\cr
+13725 \tab  \tab 44E9.00 \tab  \tab Plasma total bilirubin level\cr
+26898 \tab  \tab 44E1.00 \tab  \tab Serum bilirubin normal\cr
+37205 \tab  \tab 44E6.00 \tab  \tab Serum bilirubin borderline\cr
+44363 \tab  \tab 44EZ.00 \tab  \tab Serum bilirubin NOS\cr
+101070 \tab  \tab 4QCE.00 \tab  \tab Bilirubin level\cr
+101501 \tab  \tab 4QCE000 \tab  \tab Bilirubin direct measurement\cr
 }
 }

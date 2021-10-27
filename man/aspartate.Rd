@@ -16,3 +16,15 @@ A dataframe containing all aspartate aminotransferase records
 This function extracts aspartate aminotransferase test results from CPRD GOLD.
 It assumes that your cohort contains a column named patid.
 }
+\details{
+Codes:
+
+\tabular{lllll}{
+Medcode \tab  \tab Readcode \tab  \tab Description\cr
+13718 \tab  \tab 	44H5.00 \tab  \tab 	AST - aspartate transam.(SGOT)\cr
+13719 \tab  \tab 	44H5.11 \tab  \tab 	AST serum level\cr
+13721 \tab  \tab 	44HB.00 \tab  \tab 	AST serum level\cr
+13722 \tab  \tab 	44HC.00 \tab  \tab 	Plasma aspartate transaminase level\cr
+51280 \tab  \tab 	44HB.11 \tab  \tab 	SGOT serum level\cr
+}
+}

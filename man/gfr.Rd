@@ -16,3 +16,11 @@ A dataframe containing all glomerular filtration rate records
 This function extracts glomerular filtration rate test results from CPRD GOLD.
 It assumes that your cohort contains a column named patid.
 }
+\details{
+Codes:
+
+\tabular{lllll}{
+Medcode \tab  \tab Readcode \tab  \tab Description\cr
+19747 \tab  \tab 451F.00 \tab  \tab Glomerular filtration rate\cr
+}
+}

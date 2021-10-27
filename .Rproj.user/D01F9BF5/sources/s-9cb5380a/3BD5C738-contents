@@ -3,6 +3,19 @@
 #' This function extracts alanine aminotransferase test results from CPRD GOLD.
 #' It assumes that your cohort contains a column named patid.
 #'
+#' Codes:
+#'
+#' \tabular{lllll}{
+#' Medcode \tab  \tab Readcode \tab  \tab Description\cr
+#' 35 \tab  \tab 	44G3.00 \tab  \tab 	ALT/SGPT serum level\cr
+#' 10565 \tab  \tab 	44G..11 \tab  \tab 	ALT - blood level\cr
+#' 13716 \tab  \tab 	44G3000 \tab  \tab 	ALT/SGPT level normal\cr
+#' 13717 \tab  \tab 	44GA.00 \tab  \tab 	Plasma alanine aminotransferase level\cr
+#' 14346 \tab  \tab 	44G..12 \tab  \tab 	SGPT - blood level\cr
+#' 26020 \tab  \tab 	44G3100 \tab  \tab 	ALT/SGPT level abnormal\cr
+#' 38197 \tab  \tab 	44GB.00 \tab  \tab 	Serum alanine aminotransferase level\cr
+#' }
+#'
 #' @param cohort A dataframe containing at least one column called patid
 #' @return A dataframe containing all alanine aminotransferase records
 #' @export

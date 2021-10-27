@@ -5,16 +5,18 @@
 #'
 #' Codes:
 #'
-#' Medcode  Readcode  Description
-#' 5        44J3.00   Serum creatine
-#' 3927     44J3300   Serum creatine raised
-#' 13736    44JF.00   Plasma creatinine level
-#' 26903    44J3200   Serum creatinine normal
-#' 27095    4Q40.00   Creatinine level
-#' 35545    44J3100   Serum creatinine low
-#' 42345    44J3z00   Serum creatinine NOS
-#' 45096    44JD.00   Corrected serum creatinine level
-#' 62062    44JC.00   Corrected plasma creatinine level
+#' \tabular{lllll}{
+#' Medcode \tab  \tab Readcode \tab  \tab Description\cr
+#' 5 \tab  \tab 44J3.00 \tab  \tab Serum creatine\cr
+#' 3927 \tab  \tab 44J3300 \tab  \tab Serum creatine raised\cr
+#' 13736 \tab  \tab 44JF.00 \tab  \tab Plasma creatinine level\cr
+#' 26903 \tab  \tab 44J3200 \tab  \tab Serum creatinine normal\cr
+#' 27095 \tab  \tab 4Q40.00 \tab  \tab Creatinine level\cr
+#' 35545 \tab  \tab 44J3100 \tab  \tab Serum creatinine low\cr
+#' 42345 \tab  \tab 44J3z00 \tab  \tab Serum creatinine NOS\cr
+#' 45096 \tab  \tab 44JD.00 \tab  \tab Corrected serum creatinine level\cr
+#' 62062 \tab  \tab 44JC.00 \tab  \tab Corrected plasma creatinine level\cr
+#' }
 #'
 #' @param cohort A dataframe containing at least one column called patid
 #' @return A dataframe containing all serum creatine records

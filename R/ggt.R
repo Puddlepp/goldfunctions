@@ -5,12 +5,14 @@
 #'
 #' Codes:
 #'
-#' Medcode  Readcode  Description
-#' 5214     44G4.00   Gamma - G.T. level
-#' 5891     44G4100   Gamma glutamyl transferase level abnormal
-#' 13752    44G4000   Gamma glutamyl transferase level normal
-#' 13753    44G9.00   Serum gamma-glutamyl transferase level
-#' 13754    44G7.00   Plasma gamma-glutamyl transferase level
+#' \tabular{lllll}{
+#' Medcode \tab  \tab Readcode \tab  \tab Description\cr
+#' 5214 \tab  \tab 44G4.00 \tab  \tab Gamma - G.T. level\cr
+#' 5891 \tab  \tab 44G4100 \tab  \tab Gamma glutamyl transferase level abnormal\cr
+#' 13752 \tab  \tab 44G4000 \tab  \tab Gamma glutamyl transferase level normal\cr
+#' 13753 \tab  \tab 44G9.00 \tab  \tab Serum gamma-glutamyl transferase level\cr
+#' 13754 \tab  \tab 44G7.00 \tab  \tab Plasma gamma-glutamyl transferase level\cr
+#' }
 #'
 #' @param cohort A dataframe containing at least one column called patid
 #' @return A dataframe containing all gamma glutamyl transferase records
