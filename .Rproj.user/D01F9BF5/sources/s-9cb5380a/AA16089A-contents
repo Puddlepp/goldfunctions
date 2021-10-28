@@ -206,7 +206,8 @@ bmi <- function(cohort, height, weight) {
     select(patid, eventdate.weight, data1.weight, height_date, height_record, bmi) %>%
     rename(weight_record = data1.weight,
            weight_date = eventdate.weight) %>%
-    filter(!(bmi < 5 | bmi > 200))
+    filter(!(bmi < 5 | bmi > 200)) %>%
+    distinct()
 
   return(height_weight)
 

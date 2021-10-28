@@ -1,0 +1,179 @@
+# Work in progress.
+
+if (!require("pacman")) install.packages("pacman")
+
+pacman::p_load(DBI,
+               dbplyr,
+               janitor,
+               odbc, 
+               tidyquant, 
+               tidyverse)
+
+# Connect to the database.
+
+con <- DBI::dbConnect(odbc::odbc(),
+                      Driver   = "ODBC Driver 17 for SQL Server",
+                      Server   = "tcp:192.168.1.40",
+                      UID      = "Aron Buxton",                    # Enter username
+                      PWD      = rstudioapi::askForPassword(),
+                      Port     = 1433,
+                      bigint = "character")
+
+# Steps
+
+# 1.  All height and weight records obtained.
+# 2.  (Later on - drop records taken during pregnancy.)
+# 3.  Weight records less than 20kg dropped.
+# 4.  Height records outside 121cm to 214cm dropped.
+# 5.  Duplicate records dropped.
+# 6.  Weight records with height recorded on the same day directly converted to 
+#     BMI
+# 7.  Remaining weight records with an older height record available converted 
+#     to BMI using most recent height data.
+# 8.  Remaining weight records with a future height record available converted 
+#     to BMI using next available height record.
+# 9.  If no height record available at all but BMI entered into CPRD GOLD, then
+#     recorded BMI is used.
+# 10. BMIs outside the range 5-200kg/m^2 dropped.
+
+# Body mass index
+
+bmi <- function(cohort, height, weight) {
+  
+  # Draw out the cohort patids.
+  
+  cohort_patid <- 
+    cohort %>% 
+    pull(patid)
+  
+  # Retrieve patient table entries for cohort and then convert each patient's 
+  # yob to a date format assuming first day of the year (e.g. "1997-01-01").
+  
+  patient_table <- 
+    tbl(con,
+        in_schema(schema = sql("cprd0121.dbo"),
+                  table = sql("patient"))) %>% 
+    filter(patid %in% cohort_patid) %>%
+    select(patid, 
+           yob,
+           end_CPRD_fu) %>%
+    collect() %>% 
+    mutate(yob = ymd(paste0(as.character(yob), "0101")))
+  
+  # Combine height and weight tables.
+  
+  height <- 
+    height %>% 
+    rename(centile_data2 = height_centile_data2)
+  
+  weight <- 
+    weight %>% 
+    rename(centile_data2 = weight_centile_data2)
+  
+  height_weight <- 
+    full_join(x = height,
+              y = weight,
+              by = c("patid",
+                     "eventdate",
+                     "sysdate",
+                     "constype",
+                     "consultation_type",
+                     "consid",
+                     "staffid",
+                     "medcode",
+                     "medical_type",
+                     "enttype",
+                     "entity_type",
+                     "data1",
+                     "unit_of_measure_data1",
+                     "data2",
+                     "centile_data2")) %>%
+    arrange(patid,eventdate)
+  
+  # Combine patient and height_weight tables.
+  
+  hw_patient <- 
+    left_join(x = height_weight,
+              y = patient_table,
+              by = "patid")
+  
+  # Exclude records where the event date is less than 18 years after yob or is
+  # greater than end_CPRD_fu.
+  
+  # Exclude weights less than 20kg and heights outside the range 121-214cm 
+  # (i.e. 4-7ft).
+
+  hw_patient <- 
+    hw_patient %>% 
+    filter(!(eventdate < yob + (18*365.25) | 
+               eventdate > end_CPRD_fu)) %>% 
+    select(-c(yob, end_CPRD_fu)) %>% 
+    filter(!(enttype == 13 & data1 < 20 |
+               enttype == 14 & data1 < 1.21 |
+               enttype == 14 & data1 > 2.14))
+  
+  # Remove duplicate records.
+  
+  hw_patient <- 
+    distinct(hw_patient, patid, eventdate, enttype, data1, .keep_all = TRUE)
+  
+  # If more than one weight record (height record) taken on a single day then 
+  # substitute the mean of those weight measurements (height measurements) as
+  # long as the standard deviation of less than or equal to 3; otherwise, exclude 
+  # the weight records (height records). Then remove the new duplicated rows.
+
+  hw_patient <- 
+    hw_patient %>% 
+    group_by(patid, eventdate, enttype) %>% 
+    mutate(mean = mean(data1),
+           sd = sd(data1)) %>% 
+    filter(is.na(sd) | sd <= 3) %>% 
+    mutate(data1 = mean) %>% 
+    select(-c(mean, sd)) %>%
+    slice_head() %>% 
+    ungroup()
+
+  # Weight records with height recorded on same day can be directly converted to 
+  # BMI (BMI = weight/height^2).
+  
+  hw_patient <-
+    pivot_wider(data = hw_patient,
+                names_from = entity_type, 
+                values_from = data1) %>%
+    clean_names() %>% 
+    mutate(weight = replace_na(weight, 0),
+           height = replace_na(height, 0)) %>%
+    group_by(patid, eventdate) %>% 
+    mutate(bmi_1 = sum(weight) / sum(height)^2)
+
+  hw_patient %>%
+    group_by(patid, enttype) %>% 
+    pivot_wider() %>% 
+    view()
+  
+  hw_patient %>% 
+    group_by(patid) %>%
+    mutate(inf_date = if_else(bmi_1 == Inf, eventdate, NA_Date_),
+           inf_date = if_else(is.na(as.character(inf_date)), min(inf_date, na.rm = TRUE), inf_date),
+           h_date = if_else(enttype == 14, eventdate, NA_Date_),
+           d_date = if_else(bmi_1 == Inf, (inf_date - max(h_date, na.rm = TRUE)), as.difftime(0, units = "days"))) %>% 
+    view()
+  
+  
+  #         height_nearest = date_near(dates = eventdate, target = inf_date, onlypre = TRUE, sidepref = 'l'))
+  
+  
+  hw_patient <- 
+    hw_patient %>%
+    group_by(patid)
+    mutate(bmi_1 = )
+  date_near()
+  return()
+  
+}
+
+
+height_weight2 <- 
+  full_join(x = height,
+            y = weight,
+            by = c("patid")) 
