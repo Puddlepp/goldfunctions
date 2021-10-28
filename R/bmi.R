@@ -7,7 +7,9 @@
 #' and height tables have already been extracted.
 #'
 #' @param cohort A dataframe containing at least one column called patid
-#' @return A dataframe containing all systolic and diastolic blood pressure records
+#' @param height A dataframe extracted from the height() function
+#' @param weight A dataframe extracted from the weight() function
+#' @return A dataframe containing all bmi records
 #' @export
 bmi <- function(cohort, height, weight) {
 
