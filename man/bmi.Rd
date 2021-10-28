@@ -8,9 +8,13 @@ bmi(cohort, height, weight)
 }
 \arguments{
 \item{cohort}{A dataframe containing at least one column called patid}
+
+\item{height}{A dataframe extracted from the height() function}
+
+\item{weight}{A dataframe extracted from the weight() function}
 }
 \value{
-A dataframe containing all systolic and diastolic blood pressure records
+A dataframe containing all bmi records
 }
 \description{
 This function calculates BMI records using height and weight results from
